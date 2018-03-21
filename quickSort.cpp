@@ -2,7 +2,7 @@
 #include <vector>
 #include <iterator>
 #include <utility>
-
+#include <fstream>
 
 template<class T>
 int partition(std::vector<T> &inputVec,int lowIndex,int highIndex)
@@ -41,7 +41,19 @@ int main()
 
     std::vector<int> str = {45,8,9,10,45,3,90,12};
     quickSort(str,0,7);
-    copy(str.begin(),str.end(),std::ostream_iterator<int>(std::cout,", "));
+    std::fstream file_txt;
+    file_txt.open("sortableArray.txt",std::ios::out);
+    if(file_txt.is_open())
+    {
+        std::cout<<"File was sucssesfully opend:\n";
+    }
+    else
+    {
+         std::cout<<"File did not open:\n";
+    }
+    copy(str.begin(),str.end(),std::ostream_iterator<int>(file_txt,", "));
+    
+
 
 
     return 0;
